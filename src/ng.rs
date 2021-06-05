@@ -5,7 +5,7 @@ use rand::Rng;
 use std::ops::Range;
 
 fn generate_unique_id() -> u32 {
-    // TODO keep a list of all currents ids in some kind of file, and then generate unique ids. Maybe 
+    // TODO keep a list of all currents ids in some kind of file, and then generate unique ids. 
     rand::thread_rng().gen_range(0..100000)
 }
 
