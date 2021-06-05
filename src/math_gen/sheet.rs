@@ -16,19 +16,27 @@ impl Sheet {
             answers: Vec::new()
         }
     }
+
+    pub fn get_header(&self) -> String {
+        format!("-NOOH'S MATH GENERATOR-\nSHEET ID {}\nNAME:\nDATE:\n\n", self.id)
+    }
     
     pub fn save_to_file(&self) -> std::io::Result<()>{
         //Create directory
         create_dir_all(format!("sheets/{}", self.id))?;
-
         
         //Define file paths
         let file_path_questions = format!("sheets/{}/questions.txt", self.id);
         let file_path_answers = format!("sheets/{}/answers.txt", self.id);
 
         //Format arrays to strings
-        let questions_str = self.questions.join("\n");
-        let answers_str = self.answers.join("\n");
+        let mut questions_str = String::new();
+        questions_str.push_str(&self.get_header());
+        questions_str.push_str(&self.questions.join("\n"));
+        
+        let mut answers_str = String::new();
+        answers_str.push_str(&self.get_header());
+        answers_str.push_str(&self.answers.join("\n"));
 
         // TODO generate file with questions
 

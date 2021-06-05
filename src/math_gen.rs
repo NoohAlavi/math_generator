@@ -35,7 +35,7 @@ pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range
         // Once all the questions have been generated, save the questions and answers to a text file
         match new_sheet.save_to_file() {
             Err(_) => {
-                println!("[ERROR] Could not make directory");
+                println!("[ERROR] Could not make directory or save file");
             },
             Ok(_) => {
                 println!("[SUCCESS] Sheet ID {} questions and answers saved succesfully, {} sheets remaining.", new_sheet.id, num_of_sheets - i - 1);
