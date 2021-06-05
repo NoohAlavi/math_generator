@@ -14,7 +14,6 @@ pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range
         // Create a new sheet with a randomly generated unique id
         let mut new_sheet = sheet::Sheet::new(generate_unique_id());
 
-        println!("Generating questions and answers for sheet ID {}, {} sheet(s) remaining", new_sheet.id, num_of_sheets - i - 1);
         for j in 1..=num_of_questions {
             // Generate two random numbers for the question
             let num1 = rand::thread_rng().gen_range(question_range.clone());
@@ -29,7 +28,6 @@ pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range
 
             // Format the equation by adding the question number and an equal sign
             new_question = format!("{}) {} = ", j, new_question);
-            println!("{}", new_question);
             
             new_sheet.questions.push(new_question);
             new_sheet.answers.push(answer);
@@ -40,7 +38,7 @@ pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range
                 println!("[ERROR] Could not make directory");
             },
             Ok(_) => {
-                println!("[SUCCESS] Sheet saved succesfully");
+                println!("[SUCCESS] Sheet ID {} questions and answers saved succesfully, {} sheets remaining.", new_sheet.id, num_of_sheets - i - 1);
             }
         }
     }
