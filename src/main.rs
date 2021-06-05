@@ -1,4 +1,4 @@
-mod ng;
+mod math_gen;
 use std::io;
 
 fn main() {
@@ -63,7 +63,7 @@ fn main() {
             .parse()
             .expect("Please type a number!");
 
-        ng::generate_sheets(num_of_sheets, num_of_questions, min_num..max_num);
+        math_gen::generate_sheets(num_of_sheets, num_of_questions, min_num..max_num);
     }
     println!("Thank you for using Nooh's Math Generator!");
 }
