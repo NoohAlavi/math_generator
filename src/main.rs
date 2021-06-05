@@ -3,7 +3,7 @@ use std::io;
 
 fn main() {
     loop {
-        let mut gen_booklet = String::new();
+        let mut gen_sheets = String::new();
         let mut num_of_sheets = String::new();
         let mut num_of_questions = String::new();
         let mut min_num = String::new();
@@ -11,16 +11,16 @@ fn main() {
 
         println!("Welcome to the Noohmon Generator!");
         
-        println!("Do you want to generate a booklet? (y/n)");
+        println!("Do you want to generate sheets? (y/n)");
         io::stdin()
-            .read_line(&mut gen_booklet)
+            .read_line(&mut gen_sheets)
             .expect("Could not read line");
         
-        let gen_booklet = gen_booklet
+        let gen_sheets = gen_sheets
             .trim()
             .to_lowercase();
 
-        if gen_booklet != "y" {
+        if gen_sheets != "y" {
             break
         }
 

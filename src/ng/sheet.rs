@@ -15,10 +15,10 @@ impl Sheet {
     }
     
     pub fn save_to_file(&self) {
-        let file_path = "/sheets/{}.txt";
+        let _file_path = "/sheets/{}.txt";
         
-        // generate file with questions
+        // TODO generate file with questions
 
-        // generate file with answers
+        // TODO generate file with answers
     }
 }
