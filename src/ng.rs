@@ -22,10 +22,11 @@ pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range
             
             // Format the numbers in the form of an equation and get the answer
             let mut new_question = format!("{} + {}", num1, num2);
-            let answer = eval(&new_question)
+            let mut answer = eval(&new_question)
                 .unwrap()
                 .to_string();
-            
+            answer = format!("{}) {}", j, answer);
+
             // Format the equation by adding the question number and an equal sign
             new_question = format!("{}) {} = ", j, new_question);
             println!("{}", new_question);
@@ -34,6 +35,13 @@ pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range
             new_sheet.answers.push(answer);
         }
         // Once all the questions have been generated, save the questions and answers to a text file
-        new_sheet.save_to_file();
+        match new_sheet.save_to_file() {
+            Err(_) => {
+                println!("[ERROR] Could not make directory");
+            },
+            Ok(_) => {
+                println!("[SUCCESS] Sheet saved succesfully");
+            }
+        }
     }
 }
