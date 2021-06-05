@@ -9,7 +9,7 @@ fn main() {
         let mut min_num = String::new();
         let mut max_num = String::new();
 
-        println!("Welcome to the Noohmon Generator!");
+        println!("Welcome to Nooh's Math Generator!");
         
         println!("Do you want to generate sheets? (y/n)");
         io::stdin()
@@ -65,5 +65,5 @@ fn main() {
 
         ng::generate_sheets(num_of_sheets, num_of_questions, min_num..max_num);
     }
-    println!("Thank you for using the Noohmon Generator!");
+    println!("Thank you for using Nooh's Math Generator!");
 }
