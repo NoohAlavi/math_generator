@@ -20,7 +20,7 @@ pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range
             let num2 = rand::thread_rng().gen_range(question_range.clone());
 
             // Pick a random operator, if multiple are present
-            let mut operator = "";
+            let operator: &str;
             let operators_ls: Vec<&str> = operators.split(' ').collect();
 
             operator = operators_ls.choose(&mut rand::thread_rng()).unwrap();

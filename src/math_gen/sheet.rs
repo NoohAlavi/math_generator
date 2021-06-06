@@ -21,12 +21,16 @@ impl Sheet {
         let mut header = format!("-NOOH'S MATH GENERATOR-\nSHEET ID {}\n", self.id);
         
         if is_question_sheet {
-            header.push_str("NAME:\nDATE:\n\n");
+            header.push_str("NAME: __________\nDATE: __________\n\n");
         } else {
             header.push('\n');
         }
         
         header
+    }
+
+    fn get_footer(&self) -> String {
+        format!("\n\nScore: ___/{}", self.questions.len())
     }
     
     pub fn save_to_file(&self) -> std::io::Result<()>{
@@ -41,7 +45,8 @@ impl Sheet {
         let mut questions_str = String::new();
         questions_str.push_str(&self.get_header(true));
         questions_str.push_str(&self.questions.join("\n"));
-        
+        questions_str.push_str(&self.get_footer());
+
         let mut answers_str = String::new();
         answers_str.push_str(&self.get_header(false));
         answers_str.push_str(&self.answers.join("\n"));
