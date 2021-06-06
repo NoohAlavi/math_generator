@@ -1,7 +1,7 @@
 mod sheet;
 
 use eval::eval;
-use rand::Rng;
+use rand::{Rng, prelude::SliceRandom};
 use std::ops::Range;
 
 fn generate_unique_id() -> u32 {
@@ -9,7 +9,7 @@ fn generate_unique_id() -> u32 {
     rand::thread_rng().gen_range(0..100000)
 }
 
-pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range: Range<u16>) {
+pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range: Range<u16>, operators: String) {
     for i in 0..num_of_sheets {
         // Create a new sheet with a randomly generated unique id
         let mut new_sheet = sheet::Sheet::new(generate_unique_id());
@@ -18,9 +18,15 @@ pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range
             // Generate two random numbers for the question
             let num1 = rand::thread_rng().gen_range(question_range.clone());
             let num2 = rand::thread_rng().gen_range(question_range.clone());
-            
+
+            // Pick a random operator, if multiple are present
+            let mut operator = "";
+            let operators_ls: Vec<&str> = operators.split(' ').collect();
+
+            operator = operators_ls.choose(&mut rand::thread_rng()).unwrap();
+
             // Format the numbers in the form of an equation and get the answer
-            let mut new_question = format!("{} + {}", num1, num2);
+            let mut new_question = format!("{} {} {}", num1, operator, num2);
             let mut answer = eval(&new_question)
                 .unwrap()
                 .to_string();

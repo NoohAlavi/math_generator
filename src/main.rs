@@ -8,6 +8,7 @@ fn main() {
         let mut num_of_questions = String::new();
         let mut min_num = String::new();
         let mut max_num = String::new();
+        let mut operators = String::new();
 
         println!("Welcome to Nooh's Math Generator!");
         
@@ -43,6 +44,11 @@ fn main() {
         io::stdin()
             .read_line(&mut max_num)
             .expect("Could not read line");
+
+        println!("Enter operator (+, -, *, /) - If multiple seperate with spaces");
+        io::stdin()
+            .read_line(&mut operators)
+            .expect("Could not read line");
         
         let num_of_sheets: u16 = num_of_sheets.trim()
             .parse()
@@ -63,7 +69,9 @@ fn main() {
             .parse()
             .expect("Please type a number!");
 
-        math_gen::generate_sheets(num_of_sheets, num_of_questions, min_num..max_num);
+        operators = String::from(operators.trim());
+
+        math_gen::generate_sheets(num_of_sheets, num_of_questions, min_num..max_num, operators);
     }
     println!("Thank you for using Nooh's Math Generator!");
 }
