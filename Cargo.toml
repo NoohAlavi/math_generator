@@ -1,5 +1,5 @@
 [package]
-name = "ng"
+name = "math_gen"
 version = "0.1.0"
 authors = ["NoohAlavi <noohalavi@gmail.com>"]
 edition = "2018"

@@ -3,10 +3,14 @@ mod sheet;
 use eval::eval;
 use rand::{Rng, prelude::SliceRandom};
 use std::ops::Range;
+use std::time::SystemTime;
 
-fn generate_unique_id() -> u32 {
-    // TODO keep a list of all currents ids in some kind of file, and then generate unique ids. 
-    rand::thread_rng().gen_range(0..100000)
+fn generate_unique_id() -> u64 {
+    // ? Generates Random ID based on system time
+    // TODO make it use a better system, as the numbers can eventually get too big, and sometimes duplicate ids can be sent, causing less sheets to be generated
+    let mut secs_since_epoch = SystemTime::now().duration_since(SystemTime::UNIX_EPOCH).unwrap().as_micros();
+    secs_since_epoch /= 200;
+    secs_since_epoch as u64
 }
 
 pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range: Range<u16>, operators: String) {

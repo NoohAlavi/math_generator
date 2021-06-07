@@ -3,7 +3,6 @@ use std::io;
 
 fn main() {
     loop {
-        let mut gen_sheets = String::new();
         let mut num_of_sheets = String::new();
         let mut num_of_questions = String::new();
         let mut min_num = String::new();
@@ -11,19 +10,6 @@ fn main() {
         let mut operators = String::new();
 
         println!("Welcome to Nooh's Math Generator!");
-        
-        println!("Do you want to generate sheets? (y/n)");
-        io::stdin()
-            .read_line(&mut gen_sheets)
-            .expect("Could not read line");
-        
-        let gen_sheets = gen_sheets
-            .trim()
-            .to_lowercase();
-
-        if gen_sheets != "y" {
-            break
-        }
 
         println!("Enter number of sheets to generate: ");
         io::stdin()
@@ -73,5 +59,4 @@ fn main() {
 
         math_gen::generate_sheets(num_of_sheets, num_of_questions, min_num..max_num, operators);
     }
-    println!("Thank you for using Nooh's Math Generator!");
 }

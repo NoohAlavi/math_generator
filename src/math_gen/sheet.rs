@@ -3,13 +3,13 @@ use std::io::prelude::*;
 
 #[derive(Debug)]
 pub struct Sheet {
-    pub id: u32,
+    pub id: u64,
     pub questions: Vec<String>,
     pub answers: Vec<String>
 }
 
 impl Sheet {
-    pub fn new(id: u32) -> Sheet {
+    pub fn new(id: u64) -> Sheet {
         Sheet {
             id,
             questions : Vec::new(),
