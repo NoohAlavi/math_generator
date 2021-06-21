@@ -8,9 +8,10 @@ use std::time::SystemTime;
 fn generate_unique_id() -> u64 {
     // ? Generates Random ID based on system time
     // TODO make it use a better system, as the numbers can eventually get too big, and sometimes duplicate ids can be sent, causing less sheets to be generated
-    let mut secs_since_epoch = SystemTime::now().duration_since(SystemTime::UNIX_EPOCH).unwrap().as_micros();
-    secs_since_epoch /= 200;
-    secs_since_epoch as u64
+    let ms_since_epoch = SystemTime::now().duration_since(SystemTime::UNIX_EPOCH)
+    .unwrap()
+    .as_micros() as u64;
+    ms_since_epoch / 10
 }
 
 pub fn generate_sheets(num_of_sheets: u16, num_of_questions: u16, question_range: Range<u16>, operators: String) {
